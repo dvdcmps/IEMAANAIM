@@ -1,0 +1,275 @@
+<html lang="pt-br">
+
+   <head>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+   
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>DevLinks</title>
+   
+      <style type='text/css'>
+          * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+          }
+          :root {
+             --text-color: white;
+             --bg-url: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYGGz2Jc1muF8bfh_5hg8F0hycMxLgQdaGGJ9kRTvPbz3SE7XPKYp075i8FPKdd_kjUsXSePGZ3XsIhKGp8tMo5YVQvDrn25pHKw_A308jxLFeqlnvgG3JFl0EQLxEg4RYMvoK5I20mR3tlD8NtbaS4a9xC4L3L9u_zKmHJRwxm_LoyB6LT0roGlWIydE/s1600/bg-mobile.jpg");
+             --stroke-color: rgba(255, 255, 255, 0.5);
+             --surface-color: rgba(255, 255, 255, 0.05);
+             --surface-color-hover: rgba(0, 0, 0, 0.02);
+             --highlight-color: rgba(255, 255, 255, 0.2);
+             --switch-bg-url: url(./assets/moon-stars.svg);
+          }
+          
+          .light {
+             --text-color: black;
+             --bg-url: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHxwoTvbwomeSsfWmaIWB2UKlE1XvYRlnoRDABdLagf7lggUmgPXmqwYjYQ1O5eFVvYNBq9phE3cknleH3vwmKjIjSXaZSv20TmsDkDoDYFgcLyYfasAkoWXkxO1-DVmkbhyOX134mWrN6K69O4LkOutI12Z9odCkP3C43ttRtMMyB5VKnvEHM52Hh8RI/s1600/bg-mobile-light.jpg");
+             --stroke-color: rgba(0, 0, 0, 0.5);
+             --surface-color: rgba(0, 0, 0, 0.05);
+             --surface-color-hover: rgba(0, 0, 0, 0.02);
+             --highlight-color: rgba(0, 0, 0, 0.1);
+             --switch-bg-url: url(./assets/sun.svg);
+          }
+          
+          body {
+             background: var(--bg-url) no-repeat top center/cover;
+             height: 100vh;
+          }
+          
+          body * {
+             font-family: "Inter", sans-serif;
+             color: var(--text-color);
+          }
+          
+          #container {
+             width: 100%;
+             max-width: 588px;
+             margin: 56px auto 0px;
+             padding: 0 24px;
+          }
+          
+          /* Profile */
+          #profile {
+             text-align: center; /* possibilita a centralização da imagem */
+             padding: 24px;
+          }
+          
+          #profile img {
+             width: 112px;
+             margin: auto;
+             /* EM ELEMENTO INLINE NÃO É POSSÍVEL APLICAR MARGIN: AUTO */
+          }
+          
+          #profile p {
+             font-weight: 500;
+             line-height: 24px;
+             margin-top: 8px;
+          }
+          
+          /* Switch */
+          #switch {
+             position: relative;
+             width: 64px;
+             margin: 4px auto;
+          }
+          
+          #switch button {
+             width: 32px;
+             height: 32px;
+             background: white var(--switch-bg-url) no-repeat center;
+             border: 0;
+             border-radius: 50%;
+          
+             /* estratégia de alinhar o objeto */
+             position: absolute;
+             transform: translateY(-50%);
+             top: 50%;
+             left: 0;
+             z-index: 1;
+             /* para animar o botão de normal/light */
+             animation: slide-back 0.2s;
+          }
+          
+          .light #switch button {
+             animation: slide-in 0.2s forwards;
+          }
+          
+          #switch button:hover {
+             outline: 8px solid var(--highlight-color);
+          }
+          
+          #switch span {
+             display: block;
+             width: 64px;
+             height: 24px;
+             background: var(--surface-color);
+             border: 1px solid var(--stroke-color);
+             backdrop-filter: blur(4px);
+             -webkit-backdrop-filter: blur(4px);
+             border-radius: 9999px;
+          }
+          
+          /* links */
+          ul {
+             list-style: none;
+          
+             display: flex;
+             flex-direction: column;
+             gap: 16px;
+          
+             padding: 24px 0;
+          }
+          
+          ul li a {
+             /* border: 1px solid red; */
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             padding: 16px 24px;
+             background: var(--surface-color);
+             border: 1px solid var(--stroke-color);
+             border-radius: 8px;
+          
+             backdrop-filter: blur(4px);
+             -webkit-backdrop-filter: blur(4px);
+             text-decoration: none;
+             font-weight: 500;
+             transition: background 0.2s;
+          }
+          
+          /* pseudo-selector */
+          ul li a:hover {
+             background: var(--surface-color-hover);
+             border: 1.5px solid var(--text-color);
+          }
+          
+          /* social links */
+          #social-links {
+             display: flex;
+             justify-content: center;
+             padding: 24px 0;
+             font-size: 24px;
+          }
+          
+          #social-links a {
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             padding: 16px;
+             transition: background 0.2s;
+             border-radius: 50%;
+          }
+          
+          #social-links a:hover {
+             background: var(--highlight-color);
+          }
+          
+          footer {
+             padding: 24px 0;
+             text-align: center;
+             font-size: 14px;
+          }
+          
+          /* media queries */
+          @media (min-width: 700px) {
+             :root {
+                --bg-url: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgppwVn-IRwJ_tkHsv8uPjs7hvOXTSTCqAiV0UXRxHPlWjiIEsnTYWtYmbChrRlmxXdeMz1kkyvHeoRY1bq4x36FOHMJEpRGcv0J_0tIJaxsiLfuBAF9BqSOQ6Yv5atl7NYQvYzk4KHgNygbwZ64ei5L-tttA4bysEEQvWgVl6SAJcesvBjaDHB4ma6hag/s1600/bg-desktop.jpg");
+             }
+          
+             .light {
+                --bg-url: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKh-VzAuW6YYfCYebFD7tY1cKuQc_i0pA4t77rf1fxpJjilPXF5DbY5gZY145C-88e0PGNlEz1V5s4cS_4nQbGF3EkI5CUr7nr7FhophIzZDh5xR0mc9QdLUmFtc1iHmOS7SIP7K8lrzj-d3cYn9e0qya7l-xPQ0AL5iKss0Jw9vZzHemH9ARDIEJGOtI/s1600/bg-desktop-light.jpg");
+             }
+          }
+          
+          /* animation */
+          @keyframes slide-in {
+             from {
+                left: 0;
+             }
+             to {
+                left: 50%;
+             }
+          }
+          
+          @keyframes slide-back {
+             from {
+                left: 50%;
+             }
+             to {
+                left: 0;
+             }
+          }
+      </style>
+   </head>
+   
+   <body>
+      <div id="container">
+         <div id="profile">
+            <img src="div-avatar" alt="Foto de Mayk Brito sorrindo, usando óculos e camisa preta, barba e 
+               fundo amarelo." />
+            <p>@maykbrito</p>
+         </div>
+         <div id="switch" onclick="toggleMode()">
+            <button> </button>
+            <span></span>
+         </div>
+         <ul>
+            <li>
+               <a href="#">Inscreva-se no NLW</a>
+            </li>
+            <li>
+               <a href="#">Baixe meu e-book</a>
+            </li>
+            <li>
+               <a href="https://github.com/maykbrito" target="_blank">Veja meu portfólio</a>
+            </li>
+            <li>
+               <a href="https://rocketseat.com.br/explorer" target="_blank">Conheça o Explorer</a>
+            </li>
+         </ul>
+         <div id="social-links">
+            <a href="https://github.com/maykbrito" target="_blank">
+               <ion-icon name="logo-github"></ion-icon>
+            </a>
+            <a href="https://instragram.com/maykbrito" target="_blank">
+               <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="https://youtube.com/maykbrito" target="_blank">
+               <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+            <a href="https://linkedin.com/in/maykbrito" target="_blank">
+               <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+         </div>
+         <footer>
+            Feito com <ion-icon name="heart"></ion-icon> pela <a href="https://rocketseat.com.br/"
+               target="_blank">Rocketseat</a>
+         </footer>
+      </div>
+      
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+      
+      <script>
+         function toggleMode() {
+            const html = document.documentElement
+            const img = document.querySelector("#profile img")
+            // A linha abaixo produz a inversão da página (light e not light)
+            html.classList.toggle("light")
+            // substituindo a imagem na tela
+            if (html.classList.contains("light")) {
+               img.setAttribute("src", "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEij9p9THS_MQWF8ghkaFfGb1DDhRqtOsEee7Jt6wAJGWE8Kp1Oyuc9I34VzEgKp_hE5c3ezZmynWb5XHEnU_SCEKvE6_xvEuIewkhWxIGSpB52oROkIhELo8THL6Bg0-h0UVxiycw-D1U9pGjGT64F6ObI-TNzKmfuubGlH6-Q5s04_pl2Rkq7sBhmWjgc/s1600/avatar-light.png")
+            } else {
+               img.setAttribute("src", "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj1M6Yz9HzBs2AHJ01NiVvVhqYs7xt1TCF1jTQh356AkCfUMR2rPG6aBFAglDkXLzCOLrOJBcyDcYO4fTG9eY5i28F-JjPjExjFj5MST6A3S3A9IrDUdgZm0HD3_f_rcSLUkpGWEwWvv2eOCTodHk9bVsGZgddeA1dbRaoESSGWP0ifOMLhlcRoYUaHrGw/s1600/avatar.png")
+            }
+         }
+       </script>
+   
+   </body>
+
+</html>
